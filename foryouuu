@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>🌸 To My Best Friend! 🌸</title>
+  <link href="https://fonts.googleapis.com/css?family=Pacifico|Quicksand:400,700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #f9d6e5 0%, #f6f1d3 100%);
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-x: hidden;
+    }
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #e75480;
+      font-size: 3em;
+      margin-top: 40px;
+      text-shadow: 2px 2px 8px #fff6;
+      letter-spacing: 2px;
+    }
+    .intro {
+      background: rgba(255,255,255,0.92);
+      border-radius: 25px;
+      padding: 40px 50px;
+      margin-top: 80px;
+      box-shadow: 0 8px 32px #e7548033;
+      font-size: 1.5em;
+      color: #e75480;
+      text-align: center;
+      max-width: 500px;
+      font-family: 'Quicksand', sans-serif;
+      transition: background 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+      animation: fadeIn 1s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
+    .start-btn, .reveal-btn {
+      background: linear-gradient(90deg, #e75480 0%, #ffe066 100%);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      padding: 18px 45px;
+      font-size: 1.2em;
+      font-family: 'Pacifico', cursive;
+      cursor: pointer;
+      box-shadow: 0 4px 16px #e7548055;
+      transition: transform 0.2s, box-shadow 0.2s;
+      outline: none;
+      margin-top: 10px;
+    }
+    .start-btn:hover, .reveal-btn:hover {
+      transform: scale(1.08) rotate(-2deg);
+      box-shadow: 0 8px 32px #e7548088;
+      background: linear-gradient(90deg, #ffe066 0%, #e75480 100%);
+    }
+    .flowers {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 30px 0 10px 0;
+      gap: 30px;
+      min-height: 140px;
+    }
+    .flower {
+      width: 90px;
+      height: 120px;
+      position: relative;
+      opacity: 0;
+      transform: scale(0.5) translateY(40px);
+      transition: opacity 0.6s, transform 0.6s;
+      animation: float 3s ease-in-out infinite alternate;
+    }
+    .flower.visible {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    .flower:nth-child(2) { animation-delay: 0.5s; }
+    .flower:nth-child(3) { animation-delay: 1s; }
+    .flower:nth-child(4) { animation-delay: 1.5s; }
+    .flower:nth-child(5) { animation-delay: 2s; }
+    @keyframes float {
+      0% { transform: translateY(0);}
+      100% { transform: translateY(-20px);}
+    }
+    .petal {
+      position: absolute;
+      width: 40px;
+      height: 60px;
+      background: radial-gradient(circle at 60% 40%, #fff 20%, #e75480 100%);
+      border-radius: 60% 60% 60% 60%;
+      top: 20px;
+      left: 25px;
+      transform-origin: 50% 80%;
+    }
+    .petal:nth-child(1) { transform: rotate(0deg);}
+    .petal:nth-child(2) { transform: rotate(72deg);}
+    .petal:nth-child(3) { transform: rotate(144deg);}
+    .petal:nth-child(4) { transform: rotate(216deg);}
+    .petal:nth-child(5) { transform: rotate(288deg);}
+    .center {
+      position: absolute;
+      top: 45px;
+      left: 40px;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle at 30% 30%, #fff 10%, #ffe066 100%);
+      border-radius: 50%;
+      border: 2px solid #e75480;
+      z-index: 2;
+    }
+    .stem {
+      position: absolute;
+      top: 80px;
+      left: 60px;
+      width: 8px;
+      height: 40px;
+      background: linear-gradient(to bottom, #7ed957 0%, #3e8e41 100%);
+      border-radius: 0 0 8px 8px;
+      z-index: 0;
+    }
+    .leaf {
+      position: absolute;
+      width: 20px;
+      height: 10px;
+      background: #7ed957;
+      border-radius: 20px 20px 0 20px;
+      top: 100px;
+      left: 50px;
+      transform: rotate(-30deg);
+    }
+    .leaf.right {
+      left: 70px;
+      transform: scaleX(-1) rotate(-30deg);
+    }
+    /* Appreciation message pop-in animation */
+    .message {
+      background: rgba(255,255,255,0.85);
+      border-radius: 20px;
+      padding: 30px 40px;
+      margin: 20px 0;
+      box-shadow: 0 8px 32px #e7548033;
+      font-size: 1.4em;
+      color: #e75480;
+      text-align: center;
+      max-width: 500px;
+      font-family: 'Quicksand', sans-serif;
+      transition: background 0.3s;
+      opacity: 0;
+      transform: scale(0.7);
+      pointer-events: none;
+    }
+    .message.pop {
+      animation: popIn 0.7s cubic-bezier(.68,-0.55,.27,1.55) forwards;
+      pointer-events: auto;
+    }
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.7);
+      }
+      60% {
+        opacity: 1;
+        transform: scale(1.08);
+      }
+      80% {
+        transform: scale(0.95);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+    .buttons {
+      display: flex;
+      gap: 20px;
+      margin: 30px 0;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
+    }
+    .buttons.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transition-delay: 0.5s;
+    }
+    .btn {
+      background: linear-gradient(90deg, #e75480 0%, #ffe066 100%);
+      color: #fff;
+      border: none;
+      border-radius: 30px;
+      padding: 15px 35px;
+      font-size: 1.1em;
+      font-family: 'Pacifico', cursive;
+      cursor: pointer;
+      box-shadow: 0 4px 16px #e7548055;
+      transition: transform 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .btn:hover {
+      transform: scale(1.08) rotate(-2deg);
+      box-shadow: 0 8px 32px #e7548088;
+      background: linear-gradient(90deg, #ffe066 0%, #e75480 100%);
+    }
+    .hidden {
+      display: none !important;
+    }
+    .emoji {
+      font-size: 2em;
+      margin: 0 5px;
+      vertical-align: middle;
+    }
+    /* Hide main content initially */
+    #main-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      /* Hide all children initially */
+    }
+    #extraMessage {
+      opacity: 0;
+      transition: opacity 0.4s;
+      margin-bottom: 20px;
+    }
+    #extraMessage.visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <h1>🌸 To My Best Friend! 🌸</h1>
+  <!-- Introduction Page -->
+  <div class="intro" id="intro">
+    <div>
+      <span class="emoji">👋</span>
+      <br>
+      Hey Bestie!<br>
+      Are you ready for a little surprise? <br>
+      Click the button below to begin your flowery adventure!
+    </div>
+    <button class="start-btn" onclick="startFlowers()">Start the Surprise!</button>
+  </div>
+  <!-- Flower Animation Section -->
+  <div class="flowers hidden" id="flowerShow">
+    <div class="flower" id="flower1">
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="center"></div>
+      <div class="stem"></div>
+      <div class="leaf"></div>
+      <div class="leaf right"></div>
+    </div>
+    <div class="flower" id="flower2">
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="center"></div>
+      <div class="stem"></div>
+      <div class="leaf"></div>
+      <div class="leaf right"></div>
+    </div>
+    <div class="flower" id="flower3">
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="center"></div>
+      <div class="stem"></div>
+      <div class="leaf"></div>
+      <div class="leaf right"></div>
+    </div>
+    <div class="flower" id="flower4">
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="center"></div>
+      <div class="stem"></div>
+      <div class="leaf"></div>
+      <div class="leaf right"></div>
+    </div>
+    <div class="flower" id="flower5">
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="center"></div>
+      <div class="stem"></div>
+      <div class="leaf"></div>
+      <div class="leaf right"></div>
+    </div>
+  </div>
+  <div style="text-align:center;">
+    <button class="reveal-btn hidden" id="revealBtn" onclick="showMainContent()">See Your Message!</button>
+  </div>
+  <!-- Main Content -->
+  <div id="main-content">
+    <div class="message" id="message">
+      <span class="emoji">🌼</span>
+      Dear Bestie,<br>
+      You are the <b>sunshine</b> to my rainy days, the <b>petal</b> to my flower, and the <b>WiFi</b> to my memes!<br>
+      Thank you for always being there, making me laugh, and being the most <b>awesome</b> friend ever!<br>
+      <span class="emoji">💖</span>
+    </div>
+    <div class="buttons" id="buttons">
+      <button class="btn" onclick="showJoke()">Make Me Laugh 😂</button>
+      <button class="btn" onclick="showCompliment()">Give Me Compliment 🌟</button>
+      <button class="btn" onclick="showLove()">Send Love 💌</button>
+    </div>
+    <div class="message" id="extraMessage"></div>
+  </div>
+  <script>
+    // Flower popping animation
+    function startFlowers() {
+      document.getElementById('intro').classList.add('hidden');
+      const flowerShow = document.getElementById('flowerShow');
+      flowerShow.classList.remove('hidden');
+      let i = 1;
+      function showNextFlower() {
+        if (i > 5) {
+          document.getElementById('revealBtn').classList.remove('hidden');
+          return;
+        }
+        document.getElementById('flower' + i).classList.add('visible');
+        i++;
+        setTimeout(showNextFlower, 400);
+      }
+      showNextFlower();
+    }
+
+    function showMainContent() {
+      document.getElementById('flowerShow').classList.add('hidden');
+      document.getElementById('revealBtn').classList.add('hidden');
+      // Hide all main content children first
+      document.getElementById('main-content').style.display = 'flex';
+      // Pop in the message
+      const msg = document.getElementById('message');
+      const btns = document.getElementById('buttons');
+      msg.classList.remove('pop');
+      btns.classList.remove('visible');
+      setTimeout(() => {
+        msg.classList.add('pop');
+        setTimeout(() => {
+          btns.classList.add('visible');
+        }, 700); // Show buttons after message pops in
+      }, 100);
+    }
+
+    // Interactive Buttons Logic
+    const jokes = [
+      "Why did the flower go to the party alone? Because it had no body to go with! 🌸",
+      "If friends were flowers, I’d pick you... and water you daily so you don’t wilt! 😂",
+      "What do you call a best friend who loves flowers? A bud-dy! 🌼",
+      "Why do flowers always drive so fast? Because they put the petal to the metal! 🚗🌸"
+    ];
+    const compliments = [
+      "You’re blooming amazing! 🌷",
+      "You’re the rarest flower in the garden of life! 🌹",
+      "You make the world a brighter, happier place! 🌞",
+      "You’re the bee’s knees and the flower’s petals! 🐝🌸"
+    ];
+    const loves = [
+      "Sending you a bouquet of virtual hugs and love! 💐🤗",
+      "You’re loved more than all the flowers in the world! 💖",
+      "If friendship was a flower, ours would be a never-ending garden! 🌻",
+      "Love you to the moon and back, bestie! 🌙💞"
+    ];
+    function showJoke() {
+      showExtraMessage(jokes[Math.floor(Math.random() * jokes.length)], "#ffe066", "#e75480");
+    }
+    function showCompliment() {
+      showExtraMessage(compliments[Math.floor(Math.random() * compliments.length)], "#e75480", "#fff");
+    }
+    function showLove() {
+      showExtraMessage(loves[Math.floor(Math.random() * loves.length)], "#f9d6e5", "#e75480");
+    }
+    function showExtraMessage(text, bg, color) {
+      const msg = document.getElementById('extraMessage');
+      msg.innerHTML = text;
+      msg.style.background = bg;
+      msg.style.color = color;
+      msg.classList.add('visible');
+      setTimeout(() => {
+        msg.classList.remove('visible');
+      }, 3500);
+    }
+    // Hide main content and message/buttons initially
+    document.getElementById('main-content').style.display = 'none';
+    document.getElementById('message').classList.remove('pop');
+    document.getElementById('buttons').classList.remove('visible');
+  </script>
+</body>
+</html>
